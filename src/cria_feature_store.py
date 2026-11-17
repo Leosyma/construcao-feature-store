@@ -31,7 +31,7 @@ def cria_feature_store():
     y = (features_grupo1[:, 0] + features_grupo1[:, 1] > 0).astype(int)  
 
     # Criar um DataFrame
-    df_features_dsa = pd.DataFrame(X, columns = [f'feature_{i}' for i in range(X.shape[1])])
-    df_features_dsa['target'] = y
+    df_features = pd.DataFrame(X, columns = [f'feature_{i}' for i in range(X.shape[1])])
+    df_features['target'] = y
 
-    return df_features_dsa
+    return df_features

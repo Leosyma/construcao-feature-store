@@ -36,14 +36,14 @@ The project shows how to:
 ├── LEIAME.txt                      # Original execution instructions
 ├── src/
 │   ├── projeto5.py                 # Main pipeline script
-│   ├── dsa_cria_feature_store.py   # Feature Store creation module
-│   ├── dsa_explora_dados.py        # Data exploration and visualization module
-│   ├── dsa_treina_modelo.py        # Model training and evaluation module
-│   └── dsa_salva_modelo.py         # Model, predictions, and metadata saving module
+│   ├── cria_feature_store.py   # Feature Store creation module
+│   ├── explora_dados.py        # Data exploration and visualization module
+│   ├── treina_modelo.py        # Model training and evaluation module
+│   └── salva_modelo.py         # Model, predictions, and metadata saving module
 ├── feature_store/
 │   └── features.csv                # Generated feature store output
 └── pipeline_runs/
-    ├── random_forest_dsa.joblib    # Trained model artifact
+    ├── random_forest.joblib    # Trained model artifact
     ├── previsoes.csv               # Model predictions
     └── pipeline_run_info.json      # Pipeline execution summary
 ```
@@ -98,7 +98,7 @@ After running the pipeline, the following files are generated:
 
 ```text
 feature_store/features.csv
-pipeline_runs/random_forest_dsa.joblib
+pipeline_runs/random_forest.joblib
 pipeline_runs/previsoes.csv
 pipeline_runs/pipeline_run_info.json
 ```
@@ -116,13 +116,13 @@ The `pipeline_run_info.json` file stores metadata such as:
 Create a virtual environment:
 
 ```bash
-python3 -m venv dsavenv
+python3 -m venv .venv
 ```
 
 Activate the virtual environment:
 
 ```bash
-source dsavenv/bin/activate
+source .venv/bin/activate
 ```
 
 Install the dependencies:
@@ -142,7 +142,7 @@ pip install -e .
 Activate the virtual environment:
 
 ```bash
-source dsavenv/bin/activate
+source .venv/bin/activate
 ```
 
 Run the main pipeline script:

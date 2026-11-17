@@ -5,10 +5,10 @@
 import os
 import json
 import time
-import dsa_cria_feature_store
-import dsa_treina_modelo
-import dsa_salva_modelo
-import dsa_explora_dados
+import cria_feature_store
+import treina_modelo
+import salva_modelo
+import explora_dados
 
 def main():
 
@@ -24,7 +24,7 @@ def main():
     os.makedirs('pipeline_runs', exist_ok = True)
 
     # Chama a função para criar o armazenamento de recursos (feature store)
-    features_df = dsa_cria_feature_store.cria_feature_store()
+    features_df = cria_feature_store.cria_feature_store()
     
     # Define o caminho para salvar o arquivo de recursos
     feature_store_path = 'feature_store/features.csv'
@@ -33,13 +33,13 @@ def main():
     features_df.to_csv(feature_store_path, index = False)
 
     # Chama a função para explorar os dados
-    dsa_explora_dados.analisa_dados(features_df)
+    explora_dados.analisa_dados(features_df)
 
     # Chama a função para treinar e avaliar o modelo, retornando várias informações relevantes
-    modelo, X_teste, y_teste, previsoes, acuracia, class_report = dsa_treina_modelo.treina_avalia_modelo(features_df)
+    modelo, X_teste, y_teste, previsoes, acuracia, class_report = treina_modelo.treina_avalia_modelo(features_df)
 
     # Define o caminho para salvar o modelo treinado
-    caminho_modelo = 'pipeline_runs/random_forest_dsa.joblib'
+    caminho_modelo = 'pipeline_runs/random_forest.joblib'
     
     # Define o caminho para salvar as previsões
     caminho_previsoes = 'pipeline_runs/previsoes.csv'
@@ -48,10 +48,10 @@ def main():
     pipeline_run_info_path = 'pipeline_runs/pipeline_run_info.json'
 
     # Salva o modelo treinado no caminho especificado
-    dsa_salva_modelo.salva_modelo(modelo, caminho_modelo)
+    salva_modelo.salva_modelo(modelo, caminho_modelo)
     
     # Salva as previsões e os valores reais de teste em um arquivo CSV
-    dsa_salva_modelo.salva_previsoes(previsoes, y_teste, caminho_previsoes)
+    salva_modelo.salva_previsoes(previsoes, y_teste, caminho_previsoes)
 
     # Cria um dicionário com informações sobre a execução do pipeline
     pipeline_run_info = {
@@ -63,7 +63,7 @@ def main():
     }
     
     # Salva as informações da execução do pipeline em um arquivo JSON
-    dsa_salva_modelo.salva_info(pipeline_run_info, pipeline_run_info_path)
+    salva_modelo.salva_info(pipeline_run_info, pipeline_run_info_path)
 
     # Imprime a acurácia do modelo na tela
     print(f"\nAcurácia: {acuracia}")

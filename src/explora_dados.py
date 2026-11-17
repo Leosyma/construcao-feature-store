@@ -6,10 +6,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 
-def plot_feature_distributions(df_features_dsa):
+def plot_feature_distributions(df_features):
     
     # Calcula o número de características numéricas, excluindo a coluna de índice ou target
-    num_features = len(df_features_dsa.columns) - 1  
+    num_features = len(df_features.columns) - 1  
     
     # Define o número de colunas para os subplots
     cols = 3  
@@ -24,10 +24,10 @@ def plot_feature_distributions(df_features_dsa):
     axes = axes.flatten()
 
     # Loop que percorre cada coluna da DataFrame (excluindo a última, a variável alvo)
-    for i, col in enumerate(df_features_dsa.columns[:-1]):  
+    for i, col in enumerate(df_features.columns[:-1]):  
         
         # Cria um histograma da coluna com uma linha de densidade
-        sns.histplot(df_features_dsa[col], ax = axes[i], kde = True)
+        sns.histplot(df_features[col], ax = axes[i], kde = True)
         
         # Define o título do subplot como o nome da coluna
         axes[i].set_title(col)
@@ -46,10 +46,10 @@ def plot_feature_distributions(df_features_dsa):
     plt.show()
 
 
-def plot_feature_correlations(df_features_dsa):
+def plot_feature_correlations(df_features):
     
     # Calcula a matriz de correlação das características
-    correlation_matrix = df_features_dsa.corr()
+    correlation_matrix = df_features.corr()
     
     # Cria uma figura com tamanho especificado
     plt.figure(figsize = (8, 6))
@@ -63,19 +63,19 @@ def plot_feature_correlations(df_features_dsa):
     # Exibe o gráfico
     plt.show()
 
-def analisa_dados(df_features_dsa):
+def analisa_dados(df_features):
     
     # Imprime um título para a distribuição das características
     print("\nGráfico de Feature Distributions.")
     
     # Chama a função para plotar as distribuições
-    plot_feature_distributions(df_features_dsa)
+    plot_feature_distributions(df_features)
 
     # Imprime um título para as correlações das características
     print("\nGráfico de Feature Correlations.")
     
     # Chama a função para plotar as correlações
-    plot_feature_correlations(df_features_dsa)
+    plot_feature_correlations(df_features)
 
 
 
